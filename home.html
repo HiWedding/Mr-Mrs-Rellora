@@ -50,7 +50,7 @@ section {
 .hero {
   height: 100vh;
   background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-              url("image/4.JPG") center/cover no-repeat;
+              url("image/4.jpg") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,6 +80,33 @@ section {
   font-size: 14px;
   cursor: pointer;
   transition: 0.3s ease;
+}.rsvp-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-decoration: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  animation: wiggle 2.5s infinite;
+}
+
+.rsvp-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Wiggle animation */
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  5% { transform: rotate(-3deg); }
+  10% { transform: rotate(3deg); }
+  15% { transform: rotate(-2deg); }
+  20% { transform: rotate(2deg); }
+  25% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .scroll-btn:hover {
@@ -395,8 +422,10 @@ footer {
    
 
 </section>
+<div class="rsvp-btn">
 
-<a href="form.html" class="rsvp-btn">RSVP Now</a>
+<a href="form.html" class="rsvp-btn">💌💕Confirm Your Attendance💕💌</a>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -431,5 +460,4 @@ const timer = setInterval(function() {
 </script>
 
 </body>
-
 </html>
