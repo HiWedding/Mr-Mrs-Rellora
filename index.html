@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 2x2 Collage Background */
+.collage-bg {
+    position: absolute;
+    width: 135%;
+    height: 130%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    z-index: -2;
+}
+
+.collage-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(7px);
+    transform: scale(1.1);
+}
+
+/* Dark overlay */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: -1;
+}
+
+
+
+/* Floating Glow Effect */
+body::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
+    animation: glow 6s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.4; }
+    to { opacity: 0.8; }
+}
+
+/* Invitation Card */
+.invitation {
+    position: relative;
+    background: rgba(255, 248, 240, 0.95);
+    padding: 50px 40px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.invitation:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.invitation h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: #b08d57;
+    margin-bottom: 10px;
+}
+
+.invitation p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.open-btn {
+    padding: 12px 28px;
+    border: none;
+    background: #b08d57;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.open-btn:hover {
+    background: #8f6f3f;
+}
+
+/* Fade Out Animation */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: scale(0.9); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .invitation {
+        padding: 35px 25px;
+    }
+
+    .invitation h1 {
+        font-size: 36px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="collage-bg">
+    <img src="6.jpg" alt="">
+    
+
+</div>
+
+<div class="overlay"></div>
+
+<div class="invitation" onclick="openInvite()">
+    <h1>Elpidio & Isabel</h1>
+    <p>We request the honor of your presence</p>
+    <button class="open-btn">OPEN INVITATION</button>
+</div>
+
+<script>
+function openInvite() {
+    const card = document.querySelector('.invitation');
+    card.classList.add('fade-out');
+
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 1000); // matches fade animation duration
+}
+</script>
+
+</body>
+</html>

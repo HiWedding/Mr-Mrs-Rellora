@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elpidio & Isabel - Wedding</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+
+  --primary: #D9BB9B;
+  --primary-dark: #C49A74;
+  --bg-soft: #F6EEE7;
+  --bg-light: #FFF9F4;
+  --text-dark: #3E2F2A;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: var(--font-body);
+  background: var(--bg-soft);
+  color: var(--text-dark);
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+}
+
+/* Sections */
+section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+              url("4.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+.scroll-btn {
+  margin-top: 40px;
+  padding: 12px 28px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: white;
+  font-family: var(--font-body);
+  letter-spacing: 2px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.scroll-btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+/* DETAILS SECTION */
+.details {
+  background: var(--bg-light);
+  padding-bottom: 80px;
+}
+
+.details h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--primary);
+  margin: 20px auto 40px;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+
+/* Info Card Styling */
+.info-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.info-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #3E2F2A;
+}
+
+.info-card .note {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* Countdown Timer Styling */
+.timer {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+/* Card Hover Effect */
+.info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+/* DRESS CODE */
+.dress-code-section {
+  background: var(--bg-light);
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 25px;
+  max-width: 1000px;
+  margin: 60px auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.dress-code-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.dress-main {
+  font-size: 18px;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.dress-visuals {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  position: relative;
+}
+
+.dress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.dress-item:hover {
+  transform: scale(1.15) translateY(-10px);
+  z-index: 2;
+}
+
+.color-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.color-circle:hover {
+  transform: scale(7.110);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.color-label {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.color-label p {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Colors */
+.mauve { background: #B784A7; }
+.beige { background: #D8C3A5; }
+.sage { background: #9CAF88; }
+.neutral { background: #EDE6DC; }
+
+/* Map buttons */
+.map-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.map-buttons a {
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.map-buttons a:hover {
+  background: var(--primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dress-visuals {
+    gap: 30px;
+  }
+  .color-circle {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* MAP BUTTONS */
+.map-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.map-buttons a {
+  padding: 10px 20px;
+  background: var(--primary-dark);
+  color: var(--bg-light);
+  text-decoration: none;
+  border-radius: 25px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.map-buttons a:hover {
+  background: var(--primary-dark);
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  background: var(--primary);
+  padding: 40px 20px;
+  font-size: 14px;
+  color: white;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+  .info-grid, .dress-grid {
+    grid-template-columns: 1fr;
+  }
+  .info-card {
+    padding: 25px 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1>Elpidio & Isabel</h1>
+  <p>ARE GETTING MARRIED</p>
+  <button class="scroll-btn" onclick="scrollToDetails()">View Details ↓</button>
+</section>
+
+<!-- WEDDING DETAILS -->
+<section class="details">
+  <h2>Wedding Details</h2>
+  <div class="divider"></div>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <h3>Wedding Date</h3>
+      <p><strong>June 19, 2026</strong></p>
+      <p id="wedding-timer" class="timer"></p>
+    </div>
+
+    <div class="info-card">
+      <h3>Ceremony</h3>
+      <p>Fairview Park United Methodist Church</p>
+      <p>3:00 PM</p>
+      <p class="note">Kindly arrive at least 20 minutes earlier.</p>
+<div class="map-buttons">
+<a href="https://www.google.com/maps/search/?api=1&query=Fairview+Park+United+Methodist+Church" target="_blank">View Ceremony Location</a>
+    </div>
+    </div>
+
+    <div class="info-card">
+      <h3>Reception</h3>
+      <p>Don Jose Heights Clubhouse</p>
+ <!-- Google Maps -->
+    <div class="map-buttons">
+      
+      <a href="https://www.google.com/maps/search/?api=1&query=Don+Jose+Heights+Clubhouse" target="_blank">View Reception Location</a>
+    </div>
+
+    </div>
+
+  </div>
+
+<section class="dress-code-section">
+  <h2>Dress Code</h2>
+  <div class="divider"></div>
+
+  <p class="dress-main"><strong>Modern Filipiniana / Barong</strong></p>
+
+  <div class="dress-visuals">
+    <div class="dress-item">
+      <div class="color-circle mauve"></div>
+      <div class="color-label"><strong>Ninang</strong><p>Mauve</p></div>
+    </div>
+    <div class="dress-item">
+      <div class="color-circle beige"></div>
+      <div class="color-label"><strong>Parents</strong><p>Beige</p></div>
+    </div>
+    <div class="dress-item">
+      <div class="color-circle sage"></div>
+      <div class="color-label"><strong>Abay</strong><p>Sage Green</p></div>
+    </div>
+    <div class="dress-item">
+      <div class="color-circle neutral"></div>
+      <div class="color-label"><strong>Guests</strong><p>Modern Filipiniana / Barong</p></div>
+    </div>
+  </div>
+
+   
+
+</section>
+
+<a href="form.html" class="rsvp-btn">RSVP Now</a>
+
+<!-- FOOTER -->
+<footer>
+  With love, Elpidio & Isabel 🤍
+</footer>
+
+<script>
+function scrollToDetails() {
+  document.querySelector('.details').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Countdown Timer with Seconds
+const weddingDate = new Date("June 19, 2026 15:00:00").getTime();
+
+const timer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("wedding-timer").innerHTML = 
+    days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+
+  if(distance < 0){
+    clearInterval(timer);
+    document.getElementById("wedding-timer").innerHTML = "It's Wedding Day! 🤍";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>

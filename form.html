@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP - Elpidio & Isabel Wedding</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #D9BB9B;
+  --primary-dark: #C49A74;
+  --bg-light: #FFF9F4;
+  --text-dark: #3E2F2A;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding: 50px 20px;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+input, select, textarea {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  font-family: var(--font-body);
+  transition: 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+button {
+  padding: 14px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  border-color: red !important;
+}
+
+/* ===== POPUP MODAL ===== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popIn 0.3s ease;
+}
+
+.modal h2 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.modal p {
+  margin-bottom: 25px;
+}
+
+.modal button {
+  width: 100%;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<h1>RSVP for Our Wedding</h1>
+
+<form id="rsvpForm">
+
+  <input type="text" name="entry.836136131" placeholder="Full Name" required>
+
+  <input type="email" name="entry.1679622696" placeholder="Email Address" required>
+
+  <select name="entry.557940409" required>
+    <option value="" disabled selected>Number of Guests</option>
+    <option value="1">1 Guest</option>
+    <option value="2">2 Guests</option>
+    <option value="3">3 Guests</option>
+    <option value="4">4 Guests</option>
+    <option value="5">5 Guests</option>
+  </select>
+
+  <input type="hidden" name="entry.915168062" value="Yes">
+
+  <textarea name="entry.981978448" placeholder="Message / Notes (optional)" rows="4"></textarea>
+
+  <button type="submit" id="submitBtn">Submit RSVP</button>
+</form>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <h2>Thank You 🤍</h2>
+    <p>Your RSVP has been successfully submitted.</p>
+    <button onclick="redirectHome()">OK</button>
+  </div>
+</div>
+
+<script>
+const form = document.getElementById("rsvpForm");
+const submitBtn = document.getElementById("submitBtn");
+const modal = document.getElementById("successModal");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const inputs = form.querySelectorAll("input[required], select[required]");
+    let isValid = true;
+
+    inputs.forEach(input => input.classList.remove("error"));
+
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            input.classList.add("error");
+            isValid = false;
+        }
+    });
+
+    const emailField = form.querySelector('input[type="email"]');
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
+    if (!emailPattern.test(emailField.value)) {
+        emailField.classList.add("error");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        alert("Please complete all required fields correctly.");
+        return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+
+    const formData = new FormData(form);
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSesvoWIXdIbND7EFdsYgFhL_7q5SeslSDXHqHRVJBkxOlB6Gw/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    }).then(() => {
+        form.reset();
+        modal.style.display = "flex";
+    }).catch(() => {
+        alert("Something went wrong. Please try again.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit RSVP";
+    });
+});
+
+function redirectHome(){
+    window.location.href = "home.html";
+}
+</script>
+
+</body>
+</html>
